@@ -26,4 +26,6 @@ public class TestingHashMap<E> {
 		System.out.println(hashMap);
 		Assert.assertEquals(2, frequency);
 	}
+	
+	
 }

@@ -137,13 +137,22 @@ public K delete(K key)
 
 public InterfaceNode<K> search(K key) {
 	InterfaceNode<K> tempNode = this.head;
-	while (tempNode != null ) {
+	while (tempNode != null && tempNode.getNext() != null) {
 		if (tempNode.getKey().equals(key)) {
 			return tempNode;
 		} else
 			tempNode = tempNode.getNext();
 	}
 	return null;
+}
+
+@Override
+public String toString() {
+	return "MyLinkedListNodes{" + head + '}';
+}
+
+public void printMyNodes() {
+	System.out.println("My Nodes:" + head);
 }
 
 //public <K extends Comparable <K>> void sort()
