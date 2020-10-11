@@ -4,7 +4,7 @@ package com.capgemini.hashmaptables
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestingLinkedList<E> {
+public class TestingLinkedList<E, K> {
 
 	// UC1 adding three integers//
 	// test 1
@@ -96,7 +96,7 @@ public class TestingLinkedList<E> {
 		Obj1.add(firstNode);
 		Obj1.append(secondNode);
 		Obj1.append(thirdNode);
-		MyNode<Integer> deletedElement = Obj1.pop();
+		InterfaceNode<Integer> deletedElement = Obj1.pop();
 
 		// System.out.println("Deleted Element is " + deletedElement +" is successfully
 		// deleted");
@@ -118,7 +118,8 @@ public class TestingLinkedList<E> {
 		Obj1.add(firstNode);
 		Obj1.append(secondNode);
 		Obj1.append(thirdNode);
-		MyNode<Integer> deletedElement = Obj1.lastPop();
+		InterfaceNode<Integer> deletedElement = Obj1.lastPop();
+		
 
 		// System.out.println("Deleted Element is " + deletedElement +" & successfully
 		// deleted");
@@ -140,8 +141,10 @@ public class TestingLinkedList<E> {
 		Obj1.add(firstNode);
 		Obj1.append(secondNode);
 		Obj1.append(thirdNode);
-		boolean result = Obj1.search(thirdNode);
-
+	//	int key = 70;
+		InterfaceNode<K> searchElement = Obj1.search( 70);
+       System.out.println("searched for key :"+searchElement.getKey());
+		boolean result =	((int)searchElement.getKey() == 70);
 		Assert.assertTrue(result);
 
 	}
@@ -191,7 +194,7 @@ public class TestingLinkedList<E> {
 		Assert.assertTrue(result);
 	}
 	
-//	// test 9
+//	// test 10
 //		// sorting elements by key
 //		@Test
 //		public void SortingElementsInListByKey() {

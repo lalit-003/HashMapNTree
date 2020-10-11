@@ -2,15 +2,15 @@ package com.capgemini.hashmaptables;
 
 public class List_HeadNTail<K> {
 
-	public MyNode<K> head;
-	public MyNode<K> tail;
+	public InterfaceNode<K> head;
+	public InterfaceNode<K> tail;
 
 	public List_HeadNTail() {
 		this.head = null;
 		this.tail = null;
 	}
 
-	public void add(MyNode<K> newNode) {
+	public void add(InterfaceNode<K> newNode) {
 		// TODO Auto-generated method stub
 
 		if (tail == null) {
@@ -19,13 +19,13 @@ public class List_HeadNTail<K> {
 		if (head == null) {
 			this.head = newNode;
 		} else {
-			MyNode<K> tempNode = this.head;
+			InterfaceNode<K> tempNode = this.head;
 			this.head = newNode;
 			this.head.setNext(tempNode);
 		}
 
 	}
-	public void append(MyNode<K> newNode) {
+	public void append(InterfaceNode<K> newNode) {
 		// TODO Auto-generated method stub
 
 		if (tail == null) {
@@ -43,7 +43,7 @@ public class List_HeadNTail<K> {
 	
 	
 	// inserting between node1 and node next to node1 
-	public void insertAfter(MyNode<K> node1,MyNode<K> newNode) {
+	public void insertAfter(InterfaceNode<K> node1,InterfaceNode<K> newNode) {
 		// TODO Auto-generated method stub
 
 		if (tail == null) {
@@ -52,7 +52,7 @@ public class List_HeadNTail<K> {
 		if (head == null) {
 			this.head = newNode;
 		} else {
-			MyNode<K> tempNode = node1.getNext() ;
+			InterfaceNode<K> tempNode = node1.getNext() ;
 			node1.setNext(newNode);
 			newNode.setNext(tempNode);
 
@@ -61,21 +61,21 @@ public class List_HeadNTail<K> {
 	}
 	//
 	//delete first element/node and deleted element
-	public MyNode<K>  pop() {
+	public InterfaceNode<K>  pop() {
 		// TODO Auto-generated method stub
 
-		MyNode<K> tempNode = this.head;
+		InterfaceNode<K> tempNode = this.head;
 		this.head = head.getNext();
 		return tempNode;
 
 		}
 	
 
-public MyNode<K>  lastPop() {
+public InterfaceNode<K>  lastPop() {
 	// TODO Auto-generated method stub
 
 	
-	MyNode<K> tempNode = (MyNode<K>) this.head;
+	InterfaceNode<K> tempNode =  this.head;
 	while(!tempNode.getNext().equals(tail))
 	{
 		tempNode = tempNode.getNext();
@@ -86,48 +86,21 @@ public MyNode<K>  lastPop() {
 
 	}
 
-public boolean  search(MyNode<K> searchElement) {
-	// TODO Auto-generated method stub
-
-	
-
-	boolean flag =false;
-	int position =0;
-	
-	MyNode<K> tempNode = this.head;
-	while(true)
-	{
-		
-		position++;
-		if(tempNode.equals(searchElement))
-		{
-			flag = true;
-			System.out.println("element found at position : "+position+"  and value is  : "+tempNode.key);
-
-			break;
-			
-		}
-		tempNode = tempNode.getNext();
-
-	}
-		return flag;
-
-	}
 
 public K delete(K key)
 {
 	K deletedElement = null ;
-	MyNode<K> prev = null;
-	MyNode<K> currentNode = head;
+	InterfaceNode<K> prev = null;
+	InterfaceNode<K> currentNode = head;
 	K searchKey = key;
 	
-	if(currentNode != null && currentNode.key == searchKey )
+	if(currentNode != null && currentNode.getKey() == searchKey )
 	{
 		this.head = currentNode.getNext();
 				
 	}
 	
-	while(currentNode != null && currentNode.key != searchKey )
+	while(currentNode != null && currentNode.getKey() != searchKey )
 	{
 		prev = currentNode;
 		currentNode = currentNode.getNext();
@@ -136,8 +109,8 @@ public K delete(K key)
 	
 	
 	if (currentNode != null) {
-		deletedElement = currentNode.key;
-		MyNode<K> Next = currentNode.getNext();
+		deletedElement = currentNode.getKey();
+		InterfaceNode<K> Next = currentNode.getNext();
 		 prev.setNext(Next);
 		System.out.println(deletedElement + "  : found and deleted");
 	}
@@ -148,13 +121,13 @@ public K delete(K key)
 
 	}
 	
-	MyNode<K> node = head;
+	InterfaceNode<K> node = head;
 	System.out.println("keys after deletion are :");
 
 	int size=0;
 	while(node != null)
 	{
-		System.out.println(node.key);
+		System.out.println(node.getKey());
 		node = node.getNext();
             size++;
 	}
@@ -162,6 +135,16 @@ public K delete(K key)
 	return deletedElement;
 }
 
+public InterfaceNode<K> search(K key) {
+	InterfaceNode<K> tempNode = this.head;
+	while (tempNode != null ) {
+		if (tempNode.getKey().equals(key)) {
+			return tempNode;
+		} else
+			tempNode = tempNode.getNext();
+	}
+	return null;
+}
 
 //public <K extends Comparable <K>> void sort()
 //{
