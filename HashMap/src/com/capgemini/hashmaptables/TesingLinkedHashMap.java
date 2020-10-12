@@ -28,5 +28,31 @@ public class TesingLinkedHashMap {
 		System.out.println("Frequency is : "+frequency);
 
 	}
+	
+	@Test
+	public void CheckingForFrequencyOfWordAvoidable_AfterDeletingIt()
+	{
+		String sentence1 = "Paranoids are not paranoid because they are paranoid but because they keep putting"
+				           + " themselves deliberately into paranoid avoidable situations";
+		MyLinkedHashMap<String, Integer> myLinkedHashMap = new MyLinkedHashMap<String, Integer>();
+
+		String words1[] = sentence1.toLowerCase().split(" ");
+		for (String word : words1) {
+			Integer value = myLinkedHashMap.get(word);
+			if (value == null)
+				value = 1;
+			else
+				value = value + 1;
+			myLinkedHashMap.add(word, value);
+		}
+
+		MyLinkedHashMap<String, Integer> linkedHashMap = new MyLinkedHashMap<String, Integer>();
+		 MyMapNode<String,Integer>  mapNode=linkedHashMap.removeWord("avoidable");
+		
+		int frequency = myLinkedHashMap.get("avoidable");
+		System.out.println("Frequency is : "+frequency);
+
+	}
+
 
 }
